@@ -44,8 +44,9 @@ for AS in 1111 2222 3333 4444; do
 	done
 done
 
-aggregate -q "$networks" > "$tmp" 2>/dev/null || aggregate6 "$networks" > "$tmp_file" 2>/dev/null
-mv "$tmp_file" "$networks"
+tmp=$(mktemp)
+aggregate -q "$networks" > "$tmp" 2>/dev/null || aggregate6 "$networks" > "$tmp" 2>/dev/null
+mv "$tmp" "$networks"
 
 #inplace edit
 netagg "$networks" &> /dev/null 
