@@ -26,9 +26,9 @@ The tool:
 ## Docker build
 
 ```sh
-git clone https://github.com/attaattaatta/ispdb.git
-cd ispdb/
-docker run --rm -v "$PWD":/app -w /app golang:alpine go build -ldflags="-s -w" -o ispdb
+git clone https://github.com/attaattaatta/netagg.git
+cd netagg/
+docker run --rm -v "$PWD":/app -w /app golang:alpine go build -ldflags="-s -w" -o netagg netagg.go
 ```
 
 ## Usage
