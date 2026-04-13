@@ -23,6 +23,14 @@ The tool:
 6. Sorts final result
 7. Writes back to the same file safely
 
+## Docker build
+
+```sh
+git clone https://github.com/attaattaatta/ispdb.git
+cd ispdb/
+docker run --rm -v "$PWD":/app -w /app golang:alpine go build -ldflags="-s -w" -o ispdb
+```
+
 ## Usage
 
 ```bash
