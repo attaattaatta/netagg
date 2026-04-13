@@ -1,0 +1,32 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - "v*"
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build binary (dockerized Go build)
+        run: |
+          docker run --rm \
+            -v "$PWD":/app \
+            -w /app \
+            golang:alpine \
+            go build -ldflags="-s -w" -o netagg netagg.go
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: netagg
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
